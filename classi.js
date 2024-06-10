@@ -32,7 +32,7 @@ console.log(user3.isOlderUser(user1));
 console.log(user3.isOlderUser(user2));
 
 // creo la classe Pet
-let petForm = {};
+let petForm = [];
 const form = document.querySelector("form");
 
 class Pet {
@@ -56,6 +56,8 @@ form.onsubmit = function (event) {
   const specie = document.getElementById("specie").value;
   const razza = document.getElementById("razza").value;
   const animal = new Pet(`${nomeAnimale}, ${nomeProp}, ${specie}, ${razza}`);
-  petForm;
+  petForm.push(animal);
+  console.log(petForm);
+  //console.log(animal.ownerName.isSameOwner(compareOwner.ownerName));
   form.reset();
 };
