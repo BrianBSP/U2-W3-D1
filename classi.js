@@ -47,6 +47,19 @@ class Pet {
       return `${this.petName} e ${compareOwner.petName} hanno lo stesso padrone: ${this.ownerName}`;
     }
   }
+  creaCard() {
+    const card = document.createElement("div");
+    card.classList.add("card", "m-3");
+    card.style.width = "350px";
+    card.innerHTML = `
+    <div class="card-body">
+        <h5 class="card-title">Questo è ${this.petName}</h5>
+        <h6 class="card-subtitle">Il suo padrone è ${this.ownerName}</h6>
+        <p class="card-text">Specie di animale: ${this.species}</p>
+        <p class="card-text">Razza: ${this.breed}</p>
+    </div>`;
+    return card;
+  }
 }
 form.onsubmit = function (event) {
   event.preventDefault();
@@ -55,9 +68,15 @@ form.onsubmit = function (event) {
   const nomeProp = document.getElementById("ownerPet").value;
   const specie = document.getElementById("specie").value;
   const razza = document.getElementById("razza").value;
-  const animal = new Pet(`${nomeAnimale}, ${nomeProp}, ${specie}, ${razza}`);
+  const animal = new Pet(nomeAnimale, nomeProp, specie, razza);
+
+  const cardContainer = document.getElementById("card-container");
+  cardContainer.appendChild(animal.creaCard());
+  petForm.forEach((pet) => {
+    console.log(animal.isSameOwner(pet));
+  });
   petForm.push(animal);
   console.log(petForm);
-  //console.log(animal.ownerName.isSameOwner(compareOwner.ownerName));
+
   form.reset();
 };
